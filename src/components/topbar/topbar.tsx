@@ -2,10 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import "./topbar.sass"
-import InputText from "../InputText/InputText";
-import Checkbox from "../Checkbox/Checkbox";
+import InputText from "../InputText/InputText"
+import Checkbox from "../Checkbox/Checkbox"
+import {useHistory} from 'react-router-dom'
+import Hamb from "../HamburgerMenu/Hamb";
 
 const Topbar = props => {
+
+    const history = useHistory()
+
     if (props.loginTopbar) {
         return (
             <div className={'topbar_container'}>
@@ -14,7 +19,9 @@ const Topbar = props => {
                     <h2>Projects</h2>
                 </section>
                 <section>
-                    <form>
+                    <form onSubmit={() => {
+                        history.push('/loading')
+                    }}>
                         <div className={'topbar_div'}>
                             <InputText
                                 placeholder={"Ex: joao@bol.com"}
@@ -32,8 +39,10 @@ const Topbar = props => {
                                         display: 'inline-block',
                                         marginRight: '8px',
                                         marginTop: '3px',
-                                        borderRadius: '2px'}}
-                                    onCheck={checked => {}}/>
+                                        borderRadius: '2px'
+                                    }}
+                                    onCheck={checked => {
+                                    }}/>
                                 Manter-me conectado
                             </a>
                         </div>
@@ -45,7 +54,21 @@ const Topbar = props => {
             </div>
         )
     } else {
-        return (<div></div>)
+        return (<div className={'topbar_container'}>
+            <section>
+                <Hamb/>
+                <img style={{height: '45px', margin: '15px 20px'}} src={require('../../assets/small_icon.svg')}
+                     alt={''}/>
+                <h2 className={'projs'}>Projects</h2>
+            </section>
+            <section style={{alignItems: 'center'}}>
+                <div className={'name_div'}>
+                    <h1>Brian Ito</h1>
+                    <h2>Desenvolvedor</h2>
+                </div>
+                <img src={require('../../assets/mock_image.PNG')} alt={''} />
+            </section>
+        </div>)
     }
 }
 

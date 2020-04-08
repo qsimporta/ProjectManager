@@ -1,0 +1,28 @@
+@import "../../assets/sass_constants/colors"
+
+.topbar_container
+  .hamb_container
+    cursor: pointer
+    display: flex
+    padding: 5px 15px
+    margin: 0 10px
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    section
+      display: flex
+      justify-content: center
+      flex-direction: column
+    div
+      margin: 2px 10px
+      position: relative
+      height: 4px
+      width: 45px
+      border-radius: 1px
+      background-color: $orange
+      &:nth-child(2)
+        width: 40px
+        align-self: flex-start
+      &:nth-child(3)
+        width: 35px
+        align-self: flex-start
