@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import "./home.sass"
 import Topbar from "../../components/topbar/topbar";
+import Sidebar from "../../components/sidebar/sidebar";
 
 const Home = props => {
  return (
     <div>
         <Topbar />
+        <Sidebar/>
     </div>
  )
 }

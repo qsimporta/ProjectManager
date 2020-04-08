@@ -6,10 +6,12 @@ import InputText from "../InputText/InputText"
 import Checkbox from "../Checkbox/Checkbox"
 import {useHistory} from 'react-router-dom'
 import Hamb from "../HamburgerMenu/Hamb";
+import {Actions} from "../../redux/actions/actions";
 
 const Topbar = props => {
 
     const history = useHistory()
+    const [sidebarOpen, setSidebarOpen] = React.useState(false)
 
     if (props.loginTopbar) {
         return (
@@ -56,7 +58,10 @@ const Topbar = props => {
     } else {
         return (<div className={'topbar_container'}>
             <section>
-                <Hamb/>
+                <Hamb onClick={() => {
+                    props.openSidebar(!sidebarOpen)
+                    setSidebarOpen(!sidebarOpen)
+                }}/>
                 <img style={{height: '45px', margin: '15px 20px'}} src={require('../../assets/small_icon.svg')}
                      alt={''}/>
                 <h2 className={'projs'}>Projects</h2>
@@ -73,6 +78,8 @@ const Topbar = props => {
 }
 
 const mapStateToProps = state => ({})
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+    openSidebar: open => dispatch({type: Actions.openSidebar, payload: open}),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Topbar)

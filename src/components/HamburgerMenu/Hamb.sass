@@ -8,7 +8,19 @@
     margin: 0 10px
     flex-direction: column
     justify-content: center
+    opacity: 1
     align-items: center
+    &.open
+      div:nth-child(3)
+        transform: rotate(45deg)
+        width: 20px
+      div:nth-child(2)
+        width: 35px
+      div:first-child
+        width: 22px
+        transform: rotate(-45deg) translateX(-6px) translateY(-6px)
+        //width: 40px
+        //transform: rotate(45deg) translateY(11.5px)
     section
       display: flex
       justify-content: center
@@ -18,7 +30,8 @@
       position: relative
       height: 4px
       width: 45px
-      border-radius: 1px
+      @include putTransition()
+      border-radius: 2px
       background-color: $orange
       &:nth-child(2)
         width: 40px
@@ -26,3 +39,24 @@
       &:nth-child(3)
         width: 35px
         align-self: flex-start
+
+@keyframes fadeOut
+  0%
+    opacity: 1
+  50%
+    opacity: 0
+  100%
+    opacity: 0
+
+@keyframes rotateRight
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(45deg) translateY(12px)
+
+@keyframes rotateLeft
+  0%
+    transform: rotate(0deg)
+  100%
+    width: 45px
+    transform: rotate(-45deg) translateY(-12px)

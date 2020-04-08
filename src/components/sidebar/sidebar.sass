@@ -1,0 +1,35 @@
+@import "../../assets/sass_constants/colors"
+
+.sidebar_container
+  position: absolute
+  box-shadow: 5px 0 5px rgba(0,0,0,0.2)
+  width: 20%
+  left: -14%
+  z-index: 0
+  @include putTransition()
+  height: 100% - 10%
+  background-color: $orange
+  &.open
+    left: 0
+  ul
+    margin-block-start: 0
+    margin-inline-start: 0
+    padding-inline-start: 0
+    li
+      padding: 1.3vw 1.2vw
+      cursor: pointer
+      display: flex
+      justify-content: flex-end
+      @include putTransition()
+      text-align: left
+      &.selected
+        background-color: darken($orange, 3)
+      p
+        flex-grow: 1
+        text-transform: uppercase
+        color: darken($orange, 30)
+      &:hover
+        background-color: lighten($orange, 3)
+      img
+        width: 55px
+        height: 55px

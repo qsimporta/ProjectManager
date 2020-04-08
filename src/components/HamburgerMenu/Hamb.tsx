@@ -5,7 +5,7 @@ import "./Hamb.sass"
 
 const Hamb = props => {
  return (
-    <div className={'hamb_container'}>
+    <div onClick={props.onClick} className={props.sidebarOpen ? 'hamb_container open' : 'hamb_container'}>
         <section>
         <div/>
         <div/>
@@ -15,7 +15,9 @@ const Hamb = props => {
  )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    sidebarOpen: state.general.sidebarOpen,
+})
 const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Hamb)
