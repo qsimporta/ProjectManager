@@ -1,9 +1,9 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { render } from '@testing-library/react'
+import {firebaseDatabase} from "./config/firebase"
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("Database Entries", () => {
+  it("Runs the database without error", () => {
+      expect(firebaseDatabase).not.toBeNull()
+  })
+})
