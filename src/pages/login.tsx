@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
+import {firebaseConfig} from "../config/firebase";
 
 const Login = props => {
  return (
   <div>
-      <h1>Vai</h1>
   </div>
  )
 }

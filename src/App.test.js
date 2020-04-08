@@ -1,9 +1,13 @@
 import React from 'react'
-import { render } from '@testing-library/react'
 import {firebaseDatabase} from "./config/firebase"
+require("dotenv").config()
 
 describe("Database Entries", () => {
-  it("Runs the database without error", () => {
-      expect(firebaseDatabase).not.toBeNull()
-  })
+    it("Recieves the database env variables", () => {
+        expect(process.env.REACT_APP_FIREBASE_PROJECT_ID).not.toBeUndefined()
+    })
+
+    it("Run de Database without Errors", () => {
+        expect(firebaseDatabase).not.toBeNull()
+    })
 })
