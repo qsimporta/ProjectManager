@@ -1,6 +1,6 @@
 import React from 'react'
 import {HashRouter as Router, Route} from 'react-router-dom'
-import Login from "./pages/login"
+import Login from "./pages/login/login"
 import {Provider} from "react-redux"
 import Store from "./redux/store"
 

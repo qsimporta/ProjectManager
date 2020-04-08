@@ -1,0 +1,48 @@
+@import "../../assets/sass_constants/colors"
+
+.topbar_container
+  top: 0
+  left: 0
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2)
+  display: flex
+  width: 100%
+  section
+    display: flex
+    flex-grow: 1
+    &:first-child
+      font-family: 'Fira Code', sans-serif
+      letter-spacing: -4px
+      color: $grey
+      align-items: center
+      img
+        height: 80%
+        margin-right: 3%
+        margin-left: 3%
+      h2
+        margin: 0
+        font-weight: 500
+        font-size: 2em
+    &:last-child
+      justify-content: flex-end
+      text-align: right
+      form
+        display: flex
+        .topbar_div
+          text-align: left
+          margin: auto
+          padding-top: 2px
+          a
+            color: lighten($grey, 3)
+            font-size: 12px
+            margin-left: 10px
+      button
+        margin-left: 15px
+        border: none
+        cursor: pointer
+        height: 100%
+        background-color: $orange
+        @include putTransition()
+        img
+          width: 50%
+        &:hover
+          background-color: darken($orange, 5)
