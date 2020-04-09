@@ -1,4 +1,5 @@
 import React from 'react'
+import "./title.sass"
 
 const Title = props => {
  return (
