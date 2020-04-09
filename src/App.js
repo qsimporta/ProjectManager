@@ -14,7 +14,6 @@ function App() {
                 <Route component={Login} path={"/"} exact/>
                 <Route component={Loading} path={'/loading'} />
                 <Route component={Home} path={'/home'} />
-                <Route component={Projetos} path={'/projetos'} />
             </Router>
         </Provider>
     )

@@ -16,8 +16,6 @@ const Projetos = props => {
 
  return (
     <div className={'projetos_page'}>
-        <Topbar/>
-        <Sidebar/>
         <div className={'content'}>
             <Title>Projetos</Title>
             <div className={'projects_container'}>
