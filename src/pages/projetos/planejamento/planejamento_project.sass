@@ -1,0 +1,75 @@
+@import "../../../assets/sass_constants/colors"
+
+.planejamento
+  .content
+    header
+      button
+        display: flex
+        align-items: center
+        cursor: pointer
+        font-family: 'Fira Sans'
+        border: none
+        padding: 10px 15px 10px 25px
+        box-shadow: 0 2px 3px rgba(0,0,0,0.2)
+        background-color: #F0F0F0
+        border-radius: 5px
+        color: $grey
+        font-weight: 400
+        font-size: 16px
+        text-align: center
+        img
+          padding-left: 30px
+          width: 20px
+          filter: brightness(70%)
+          height: 20px
+      p
+        color: $grey
+    .section_container
+      h1
+        color: $grey
+    .finalizar
+      font-family: 'Fira Sans'
+      width: 100%
+      text-transform: uppercase
+      font-size: 20px
+      letter-spacing: 2px
+      padding: 15px
+      background-color: $green
+      color: #FFF
+      cursor: pointer
+      border: none
+      border-radius: 5px
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2)
+  .none
+    color: lighten($grey, 20)
+  .requisito_container
+    display: flex
+    width: 100%
+    button
+      margin-left: 25px
+      padding: 0 35px
+      font-size: 25px
+      background-color: $orange
+      border: none
+      color: #FFFFFF
+      border-radius: 5px
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2)
+    .req
+      flex-grow: 1
+      input
+        margin: 0
+        width: 100%
+  .class_container
+    display: flex
+    padding: 0 15px 15px 15px
+    width: 350px
+    flex-direction: column
+    border-radius: 5px
+    background: #F0F0F0
+    h2
+      margin: 3% 0
+      font-size: 1.5em
+    p
+      padding: 0
+      margin: 8px 12px
+      color: $grey

@@ -1,0 +1,26 @@
+@import "../../assets/sass_constants/colors"
+
+.modal_parent
+  position: fixed
+  background-color: #FFFFFF
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2)
+  width: 45%
+  top: -100%
+  margin-left: 18%
+  @include putTransition(.3s)
+  display: flex
+  padding: 0 2%
+  border-radius: 10px
+  flex-direction: column
+  z-index: 1001
+  &.open
+    top: 12%
+  header
+    display: flex
+    flex-direction: row
+    color: $grey
+    h1
+      flex-grow: 1
+    img
+      width: 3.5%
+      cursor: pointer

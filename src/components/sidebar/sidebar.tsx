@@ -31,6 +31,7 @@ const Sidebar = props => {
                     <img src={require('../../assets/code_icon.svg')} alt={''}/>
                 </li>
                 <li
+                    className={location.pathname === '/home/users' ? 'selected' : ''}
                     onClick={() => {
                         if (props.sidebarOpen)
                             props.openSidebar(false)

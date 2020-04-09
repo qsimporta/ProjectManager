@@ -7,7 +7,9 @@ import Sidebar from "../../components/sidebar/sidebar"
 import Title from "../../components/title/title"
 import {HashRouter as Router, Route} from 'react-router-dom'
 import Projetos from "../projetos/projetos"
-import Users from "../users/users";
+import Users from "../users/users"
+import {useHistory} from "react-router-dom"
+import PlanejamentoProject from "../projetos/planejamento/planejamento_project";
 
 const FeedPage = props => {
     const projetos = [
@@ -15,6 +17,7 @@ const FeedPage = props => {
         {nome: 'ProjectManager', stage: 'Planejamento'},
     ]
     const colors = ['#F39200','#DDDC00','#94C11F','#3AAA35','#127533', '#951B81', '#E94F1C']
+    const story = useHistory()
 
     return (
         <div className={'content'}>
@@ -22,7 +25,9 @@ const FeedPage = props => {
             <div className={'projects_container'}>
                 {
                     projetos.map((projeto, index) => (
-                        <div className={'project'} style={{backgroundColor: colors[index % colors.length]}}>
+                        <div
+                            onClick={() => story.push('/home/projeto')}
+                            className={'project'} style={{backgroundColor: colors[index % colors.length]}}>
                             <h2>{projeto.nome}</h2>
                             <h3>{projeto.stage}</h3>
                         </div>
@@ -67,6 +72,7 @@ const Home = props => {
                 <Route path={'/home'} component={FeedPage} exact />
                 <Route path={'/home/projetos'} component={Projetos} />
                 <Route path={'/home/users'} component={Users} />
+                <Route path={'/home/projeto'} component={PlanejamentoProject} />
             </Router>
         </div>
     )

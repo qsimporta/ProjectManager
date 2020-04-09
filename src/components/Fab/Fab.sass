@@ -11,6 +11,9 @@
   height: 72px
   display: flex
   box-shadow: 0 3px 2px rgba(0,0,0,0.2)
+  @include putTransition()
+  &.open
+    transform: rotate(45deg)
   img
     height: 18px
     width: 18px

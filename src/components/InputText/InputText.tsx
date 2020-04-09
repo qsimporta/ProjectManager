@@ -8,6 +8,7 @@ const InputText = props => {
     <div className={'input_container '+props.className}>
         <label>{props.label}</label>
         <input
+            autoComplete={props.autoComplete}
             placeholder={props.placeholder}
             type={props.type} name={props.name} />
     </div>
@@ -15,6 +16,7 @@ const InputText = props => {
 }
 
 InputText.propTypes = {
+    autoComplete: PropTypes.bool,
     label: PropTypes.string.isRequired,
     className: PropTypes.string,
     name: PropTypes.string,

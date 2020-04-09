@@ -2,12 +2,20 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Title from "../../components/title/title"
 import "./users.sass"
-import Fab from "../../components/Fab/Fab";
+import Fab from "../../components/Fab/Fab"
+import ModalFather from '../../components/modal_father/ModalFather'
 
 const Users = props => {
+
+    const [modalOpen, setModalOpen] = React.useState(false)
+
     return (
         <div className={'users_page'}>
             <div className={'content'}>
+                <ModalFather title={"Novo Usuário"}
+                             close={() => setModalOpen(false)}
+                             open={modalOpen}>
+                </ModalFather>
                 <Title>Usuários</Title>
                 <table cellSpacing={'0'}>
                     <thead>
@@ -45,7 +53,7 @@ const Users = props => {
                     </tr>
                     </tbody>
                 </table>
-                <Fab/>
+                <Fab onClick={() => setModalOpen(!modalOpen)} open={modalOpen}/>
             </div>
         </div>
     )
