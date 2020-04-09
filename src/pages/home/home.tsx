@@ -9,7 +9,10 @@ import {HashRouter as Router, Route} from 'react-router-dom'
 import Projetos from "../projetos/projetos"
 import Users from "../users/users"
 import {useHistory} from "react-router-dom"
-import PlanejamentoProject from "../projetos/planejamento/planejamento_project";
+import PlanejamentoProject from "../projetos/planejamento/planejamento_project"
+import ModalFather from "../../components/modal_father/ModalFather"
+import Button from "../../components/Button/Button"
+import {Actions} from "../../redux/actions/actions";
 
 const FeedPage = props => {
     const projetos = [
@@ -64,10 +67,27 @@ const FeedPage = props => {
 }
 
 const Home = props => {
+
+    const [modalOpen, setModalOpen] = React.useState(false)
+    let story = useHistory()
+
     return (
         <div className={'home_page'}>
             <Topbar/>
             <Sidebar/>
+            <div className={'content'}>
+                <ModalFather
+                    title={'Saída'}
+                    open={props.exitClicked}
+                    close={() => props.exitClick(false)}>
+                    <p>Tem certeza que deseja sair do Projects?</p>
+                    <p style={{textAlign: 'right'}}>
+                        <Button onClick={() => {
+                            story.push('/');
+                        }}>Confirmar</Button>
+                    </p>
+                </ModalFather>
+            </div>
             <Router>
                 <Route path={'/home'} component={FeedPage} exact />
                 <Route path={'/home/projetos'} component={Projetos} />
@@ -78,7 +98,11 @@ const Home = props => {
     )
 }
 
-const mapStateToProps = state => ({})
-const mapDispatchToProps = dispatch => ({})
+const mapStateToProps = state => ({
+    exitClicked: state.general.exitClicked,
+})
+const mapDispatchToProps = dispatch => ({
+    clickExit: exit => dispatch({type: Actions.clickExit, payload: exit})
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -46,6 +46,7 @@ const PlanejamentoProject = props => {
                     <h1>Mock-ups</h1>
                     <section>
                         <p className={'none'}>Nenhum upload até o momento.</p>
+                        <Button>Fazer Upload dos Mock-Ups</Button>
                     </section>
                 </div>
                 <button className={'finalizar'}>Finalizar Planejamento</button>

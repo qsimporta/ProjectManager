@@ -38,7 +38,10 @@ const Sidebar = props => {
                         story.push('/home/users')
                     }}>
                     <p>Usuários</p><img src={require("../../assets/user_icon.svg")} alt={''}/></li>
-                <li><p>Sair</p><img src={require('../../assets/leave_icon.svg')} alt={''}/></li>
+                <li onClick={() => props.clickExit(true)}>
+                    <p>Sair</p>
+                    <img src={require('../../assets/leave_icon.svg')} alt={''}/>
+                </li>
             </ul>
         </div>
     )
@@ -48,6 +51,7 @@ const mapStateToProps = state => ({
     sidebarOpen: state.general.sidebarOpen,
 })
 const mapDispatchToProps = dispatch => ({
+    clickExit: exit => dispatch({type: Actions.clickExit, payload: exit}),
     openSidebar: open => dispatch({type: Actions.openSidebar, payload: open})
 })
 
