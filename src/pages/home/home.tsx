@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import "./home.sass"
 import Topbar from "../../components/topbar/topbar"
 import Sidebar from "../../components/sidebar/sidebar"
+import Title from "../../components/title/title";
 
 const Home = props => {
     // $green: #3AAA35
@@ -23,7 +24,7 @@ const Home = props => {
             <Topbar/>
             <Sidebar/>
             <div className={'content'}>
-                <h1>Últimos Projetos<span className={'line'}/></h1>
+                <Title>Últimos Projetos</Title>
                 <div className={'projects_container'}>
                     {
                         projetos.map((projeto, index) => (
@@ -34,7 +35,7 @@ const Home = props => {
                         ))
                     }
                 </div>
-                <h1>Feed<span className={'line'}/></h1>
+                <Title>Feed</Title>
                 <div className={'feed_container'}>
                     <h2 className={'date'}>24/05</h2>
                     <div className={'feed_update'}>
