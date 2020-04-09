@@ -1,22 +1,26 @@
 @import "../../assets/sass_constants/colors"
 
 .sidebar_container
-  position: absolute
+  position: fixed
   box-shadow: 5px 0 5px rgba(0,0,0,0.2)
   width: 20%
   left: -14%
   z-index: 0
+  align-items: center
+  top: 0
+  display: flex
   @include putTransition()
-  height: 100% - 10%
+  height: 100%
   background-color: $orange
   &.open
     left: 0
   ul
+    width: 100%
     margin-block-start: 0
     margin-inline-start: 0
     padding-inline-start: 0
     li
-      padding: 1.3vw 1.2vw
+      padding: 1.3vw 1.5vw
       cursor: pointer
       display: flex
       justify-content: flex-end
@@ -31,5 +35,5 @@
       &:hover
         background-color: lighten($orange, 3)
       img
-        width: 55px
-        height: 55px
+        width: 42px
+        height: 42px

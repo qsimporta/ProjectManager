@@ -71,7 +71,7 @@ const Topbar = props => {
                     <h1>Brian Ito</h1>
                     <h2>Desenvolvedor</h2>
                 </div>
-                <img src={require('../../assets/mock_image.PNG')} alt={''} />
+                <img className={'photo'} src={require('../../assets/mock_image.PNG')} alt={''} />
             </section>
         </div>)
     }
