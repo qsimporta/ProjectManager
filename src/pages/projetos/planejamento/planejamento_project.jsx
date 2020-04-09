@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Title from "../../../components/title/title"
 import "./planejamento_project.sass"
 import InputText from "../../../components/InputText/InputText"
+import Button from "../../../components/Button/Button"
 
 const PlanejamentoProject = props => {
     return (
@@ -37,6 +38,8 @@ const PlanejamentoProject = props => {
                             <p>idade: Number</p>
                             <p>Bagagens: Array [{'{'}<br/>tamanho: Number,<br/> peso: Number,<br/> id: ObjectId<br/> {'}'}]</p>
                         </div>
+                        <Button>Adicionar Classe</Button>
+                        <Button>Gerar Data Access Objects</Button>
                     </section>
                 </div>
                 <div className={'section_container'}>
