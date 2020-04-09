@@ -79,11 +79,12 @@ const Home = props => {
                 <ModalFather
                     title={'Saída'}
                     open={props.exitClicked}
-                    close={() => props.exitClick(false)}>
+                    close={() => props.clickExit(false)}>
                     <p>Tem certeza que deseja sair do Projects?</p>
                     <p style={{textAlign: 'right'}}>
                         <Button onClick={() => {
-                            story.push('/');
+                            props.clickExit(false)
+                            story.push('/')
                         }}>Confirmar</Button>
                     </p>
                 </ModalFather>

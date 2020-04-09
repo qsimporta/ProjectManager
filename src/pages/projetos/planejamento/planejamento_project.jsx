@@ -5,8 +5,15 @@ import Title from "../../../components/title/title"
 import "./planejamento_project.sass"
 import InputText from "../../../components/InputText/InputText"
 import Button from "../../../components/Button/Button"
+import Tabs from "../../../components/Tabs/Tabs"
+import Planejamento from "./tabs/planejamento/planejamento"
+import Tarefas from "./tabs/tarefas/tarefas"
 
 const PlanejamentoProject = props => {
+
+    const [tabSelected, selectTab] = React.useState('Tarefas')
+    const planejamentoDone = true
+
     return (
         <div className={'planejamento'}>
             <div className={'content'}>
@@ -18,38 +25,15 @@ const PlanejamentoProject = props => {
                         Proin viverra mollis massa, sed ornare felis accumsan commodo.</p>
                     <button>Ver no GitHub <img src={require('../../../assets/github-logo.svg')} alt/></button>
                 </header>
-                <div className={'section_container'}>
-                    <h1>Requisitos</h1>
-                    <section>
-                    <p className={'none'}>Ainda não foram registrados nenhum Requisito Funcional ou Não-Funcional.</p>
-                        <div className={'requisito_container'}>
-                            <InputText autoComplete={false} className={'req'} label={'Requisito'} type={'text'} name={'requisito'} />
-                            <button>+</button>
+                {
+                    planejamentoDone ? (
+                        <div>
+                            <Tabs onClickTab={(tab) => selectTab(tab)} tabSelected={tabSelected}/>
+                            <Planejamento show={tabSelected === 'Planejamento'}/>
+                            <Tarefas show={tabSelected === 'Tarefas'} />
                         </div>
-                    </section>
-                </div>
-                <div className={'section_container'}>
-                    <h1>Classes</h1>
-                    <section>
-                        <p className={'none'}>Ainda não foi registrada nenhuma classe.</p>
-                        <div className={'class_container'}>
-                            <h2 className={'title'}>Pessoa</h2>
-                            <p>nome: String</p>
-                            <p>idade: Number</p>
-                            <p>Bagagens: Array [{'{'}<br/>tamanho: Number,<br/> peso: Number,<br/> id: ObjectId<br/> {'}'}]</p>
-                        </div>
-                        <Button>Adicionar Classe</Button>
-                        <Button>Gerar Data Access Objects</Button>
-                    </section>
-                </div>
-                <div className={'section_container'}>
-                    <h1>Mock-ups</h1>
-                    <section>
-                        <p className={'none'}>Nenhum upload até o momento.</p>
-                        <Button>Fazer Upload dos Mock-Ups</Button>
-                    </section>
-                </div>
-                <button className={'finalizar'}>Finalizar Planejamento</button>
+                    ) : (<Planejamento/>)
+                }
             </div>
         </div>
     )
