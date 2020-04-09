@@ -7,6 +7,7 @@ import Sidebar from "../../components/sidebar/sidebar"
 import Title from "../../components/title/title"
 import {HashRouter as Router, Route} from 'react-router-dom'
 import Projetos from "../projetos/projetos"
+import Users from "../users/users";
 
 const FeedPage = props => {
     const projetos = [
@@ -65,6 +66,7 @@ const Home = props => {
             <Router>
                 <Route path={'/home'} component={FeedPage} exact />
                 <Route path={'/home/projetos'} component={Projetos} />
+                <Route path={'/home/users'} component={Users} />
             </Router>
         </div>
     )
