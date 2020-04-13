@@ -8,6 +8,7 @@ import Button from "../../../components/Button/Button"
 import Tabs from "../../../components/Tabs/Tabs"
 import Planejamento from "./tabs/planejamento/planejamento"
 import Tarefas from "./tabs/tarefas/tarefas"
+import Commits from "./tabs/commits/commits"
 
 const PlanejamentoProject = props => {
 
@@ -31,6 +32,7 @@ const PlanejamentoProject = props => {
                             <Tabs onClickTab={(tab) => selectTab(tab)} tabSelected={tabSelected}/>
                             <Planejamento show={tabSelected === 'Planejamento'}/>
                             <Tarefas show={tabSelected === 'Tarefas'} />
+                            <Commits show={tabSelected === 'Commits'}/>
                         </div>
                     ) : (<Planejamento/>)
                 }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import "./sidebar.sass"
 import {useHistory, useLocation} from 'react-router-dom'
 import {Actions} from "../../redux/actions/actions";
+import Users from "../../DAOs/Users";
 
 const Sidebar = props => {
 

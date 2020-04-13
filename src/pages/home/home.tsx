@@ -8,6 +8,7 @@ import Title from "../../components/title/title"
 import {HashRouter as Router, Route} from 'react-router-dom'
 import Projetos from "../projetos/projetos"
 import Users from "../users/users"
+import UsersDAO from '../../DAOs/Users'
 import {useHistory} from "react-router-dom"
 import PlanejamentoProject from "../projetos/planejamento/planejamento_project"
 import ModalFather from "../../components/modal_father/ModalFather"
@@ -71,6 +72,10 @@ const Home = props => {
     const [modalOpen, setModalOpen] = React.useState(false)
     let story = useHistory()
 
+    const logOutHandler = async () => {
+        await UsersDAO.logout()
+    }
+
     return (
         <div className={'home_page'}>
             <Topbar/>
@@ -83,6 +88,7 @@ const Home = props => {
                     <p>Tem certeza que deseja sair do Projects?</p>
                     <p style={{textAlign: 'right'}}>
                         <Button onClick={() => {
+                            logOutHandler()
                             props.clickExit(false)
                             story.push('/')
                         }}>Confirmar</Button>

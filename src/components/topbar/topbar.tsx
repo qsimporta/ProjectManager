@@ -1,17 +1,30 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import "./topbar.sass"
 import InputText from "../InputText/InputText"
 import Checkbox from "../Checkbox/Checkbox"
 import {useHistory} from 'react-router-dom'
-import Hamb from "../HamburgerMenu/Hamb";
-import {Actions} from "../../redux/actions/actions";
+import Hamb from "../HamburgerMenu/Hamb"
+import {Actions} from "../../redux/actions/actions"
+import Users from "../../DAOs/Users"
 
 const Topbar = props => {
 
     const history = useHistory()
     const [sidebarOpen, setSidebarOpen] = React.useState(false)
+
+    const LoginSubmit = async e => {
+        e.preventDefault()
+        const form = e.target
+        let user = {email: form.email.value, password: form.pwd.value}
+        let res = await Users.login(user)
+        // @ts-ignore
+        if (res.code === 200) {
+            history.push('/loading')
+        } else {
+            alert('na na ni na não')
+        }
+    }
 
     if (props.loginTopbar) {
         return (
@@ -21,18 +34,18 @@ const Topbar = props => {
                     <h2>Projects</h2>
                 </section>
                 <section>
-                    <form onSubmit={() => {
-                        history.push('/loading')
-                    }}>
+                    <form onSubmit={LoginSubmit}>
                         <div className={'topbar_div'}>
                             <InputText
                                 placeholder={"Ex: joao@bol.com"}
+                                name={'email'}
                                 label={"E-mail"}/>
                             <a>Esqueceu sua senha?</a>
                         </div>
                         <div className={'topbar_div'}>
                             <InputText
                                 type={'password'}
+                                name={'pwd'}
                                 placeholder={"Informe aqui sua senha"}
                                 label={"Senha"}/>
                             <a>

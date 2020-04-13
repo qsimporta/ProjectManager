@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
+import "./tarefas.sass"
 
 const Tarefa = props => (
     <tr>
@@ -9,23 +9,38 @@ const Tarefa = props => (
         <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac facilisis ante.</td>
         <td>28/Jan/2020</td>
         <td>
-            <button>Editar</button>
-            <button>Remover</button>
+            <button>Pendente</button>
         </td>
     </tr>
 )
 
 const Tarefas = props => {
- return (
-    <div className={'tarefas_container'}>
-        <div className={'group_container'}>
-            <h2 className={'group_title'}>Frontend</h2>
-            <table>
-                <Tarefa />
-            </table>
-        </div>
-    </div>
- )
+    if (props.show) {
+        return (
+            <div className={'tarefas_container'}>
+                <div className={'group_container'}>
+                    <h2 className={'group_title'}>Frontend</h2>
+                    <table cellSpacing={'0'}>
+                        <Tarefa />
+                        <Tarefa />
+                        <Tarefa />
+                        <Tarefa />
+                    </table>
+                </div>
+                <div className={'group_container'}>
+                    <h2 className={'group_title'}>Frontend</h2>
+                    <table cellSpacing={'0'}>
+                        <Tarefa />
+                        <Tarefa />
+                        <Tarefa />
+                        <Tarefa />
+                    </table>
+                </div>
+            </div>
+        )
+    } else {
+        return <></>
+    }
 }
 
 Tarefas.propTypes = {
