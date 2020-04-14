@@ -5,9 +5,10 @@ import "./InputText.sass"
 
 const InputText = props => {
  return (
-    <div className={'input_container '+props.className}>
+    <div style={props.style} className={'input_container '+props.className}>
         <label>{props.label}</label>
         <input
+            required={props.required}
             autoComplete={props.autoComplete}
             placeholder={props.placeholder}
             type={props.type} name={props.name} />
@@ -21,6 +22,8 @@ InputText.propTypes = {
     className: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
+    style: PropTypes.object,
+    required: PropTypes.bool,
 }
 
 const mapStateToProps = state => ({})

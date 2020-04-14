@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Ref, useRef} from 'react'
 import {connect} from 'react-redux'
 import "./topbar.sass"
 import InputText from "../InputText/InputText"
@@ -7,17 +7,32 @@ import {useHistory} from 'react-router-dom'
 import Hamb from "../HamburgerMenu/Hamb"
 import {Actions} from "../../redux/actions/actions"
 import Users from "../../DAOs/Users"
+import {firebaseAuth, firebaseStorage} from "../../config/firebase"
+import {Redirect} from 'react-router-dom'
 
 const Topbar = props => {
 
     const history = useHistory()
     const [sidebarOpen, setSidebarOpen] = React.useState(false)
+    const [keepConnected, setKeepConnected] = React.useState(false)
+
+    const imgRef = useRef<HTMLImageElement>(null)
+
+    if (firebaseAuth.currentUser && !props.userLogged) {
+        return (<Redirect to={'/loading'} />)
+    } else if (firebaseAuth.currentUser && props.userLogged) {
+        firebaseStorage.child(props.userLogged.photo_url).getDownloadURL().then(url => {
+            if (imgRef && imgRef.current) {
+                imgRef.current.src = url
+            }
+        })
+    }
 
     const LoginSubmit = async e => {
         e.preventDefault()
         const form = e.target
         let user = {email: form.email.value, password: form.pwd.value}
-        let res = await Users.login(user)
+        let res = await Users.login(user, keepConnected)
         // @ts-ignore
         if (res.code === 200) {
             history.push('/loading')
@@ -25,6 +40,8 @@ const Topbar = props => {
             alert('na na ni na não')
         }
     }
+
+
 
     if (props.loginTopbar) {
         return (
@@ -57,6 +74,7 @@ const Topbar = props => {
                                         borderRadius: '2px'
                                     }}
                                     onCheck={checked => {
+                                        setKeepConnected(checked)
                                     }}/>
                                 Manter-me conectado
                             </a>
@@ -68,7 +86,7 @@ const Topbar = props => {
                 </section>
             </div>
         )
-    } else {
+    } else if (props.userLogged && firebaseAuth.currentUser) {
         return (<div className={'topbar_container'}>
             <section>
                 <Hamb onClick={() => {
@@ -81,18 +99,25 @@ const Topbar = props => {
             </section>
             <section style={{alignItems: 'center'}}>
                 <div className={'name_div'}>
-                    <h1>Brian Ito</h1>
+                    <h1>{props.userLogged.first_name}</h1>
                     <h2>Desenvolvedor</h2>
                 </div>
-                <img className={'photo'} src={require('../../assets/mock_image.PNG')} alt={''} />
+                <img ref={imgRef} className={'photo'} src={require('../../assets/mock_image.PNG')} alt={''} />
             </section>
         </div>)
+    } else {
+        return <Redirect to ="/loading" />
     }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    userLogged: state.general.userLogged,
+})
+
 const mapDispatchToProps = dispatch => ({
+    setUserLogged: userLogged => dispatch({type: Actions.setUserLogged, payload: userLogged}),
     openSidebar: open => dispatch({type: Actions.openSidebar, payload: open}),
 })
 
+//@ts-ignore
 export default connect(mapStateToProps, mapDispatchToProps)(Topbar)

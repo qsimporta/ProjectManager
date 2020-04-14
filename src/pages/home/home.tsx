@@ -14,6 +14,7 @@ import PlanejamentoProject from "../projetos/planejamento/planejamento_project"
 import ModalFather from "../../components/modal_father/ModalFather"
 import Button from "../../components/Button/Button"
 import {Actions} from "../../redux/actions/actions";
+import {firebaseAuth} from "../../config/firebase";
 
 const FeedPage = props => {
     const projetos = [
@@ -22,6 +23,13 @@ const FeedPage = props => {
     ]
     const colors = ['#F39200','#DDDC00','#94C11F','#3AAA35','#127533', '#951B81', '#E94F1C']
     const story = useHistory()
+
+    React.useEffect(() => {
+        if (firebaseAuth.currentUser && firebaseAuth.currentUser.email) {
+            console.log(firebaseAuth.currentUser.email)
+            UsersDAO.getUserByEmail(firebaseAuth.currentUser.email)
+        }
+    }, [])
 
     return (
         <div className={'content'}>

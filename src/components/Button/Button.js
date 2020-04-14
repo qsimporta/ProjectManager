@@ -8,7 +8,8 @@ const Button = props => {
      <button
          type={props.type}
          onClick={props.onClick}
-         className={'btn_original'}>
+         disabled={props.loading}
+         className={props.loading ? 'btn_original loading' : 'btn_original'}>
          {props.children}
      </button>
  )
@@ -17,6 +18,7 @@ const Button = props => {
 Button.propTypes = {
     onClick: PropTypes.func,
     type: PropTypes.string,
+    loading: PropTypes.bool,
 }
 
 const mapStateToProps = state => ({})
