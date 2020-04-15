@@ -5,6 +5,8 @@ import Title from "../../components/title/title"
 import Fab from "../../components/Fab/Fab"
 import ModalFather from "../../components/modal_father/ModalFather"
 import {useHistory} from "react-router-dom"
+import InputText from "../../components/InputText/InputText"
+import Button from "../../components/Button/Button"
 
 const Projetos = props => {
 
@@ -22,6 +24,17 @@ const Projetos = props => {
             <ModalFather
                 close={() => setNovoProjetoOpen(false)}
                 title={'Novo Projeto'} open={novoProjetoOpen}>
+                <InputText
+                    className={'width_bigger'}
+                    label={'Nome do Projeto'}
+                    placeholder={'Informe o nome do projeto.'} />
+                <InputText
+                    className={'width_bigger'}
+                    label={'Descrição do Projeto'}
+                    placeholder={'Informe uma breve descrição com resultado final e como será implementado'} />
+                    <div className={'footer'}>
+                        <Button>Confirmar</Button>
+                    </div>
             </ModalFather>
             <Title>Projetos</Title>
             <div className={'projects_container'}>
