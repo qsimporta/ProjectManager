@@ -7,6 +7,7 @@ import {useHistory} from 'react-router-dom'
 import {firebaseAuth} from "../../config/firebase"
 import {Actions} from "../../redux/actions/actions"
 import Users from "../../DAOs/Users"
+import ProjetoDAO from "../../DAOs/Projeto";
 
 const Loading = props => {
 
@@ -16,16 +17,19 @@ const Loading = props => {
         if (firebaseAuth.currentUser) {
             if (!props.userLogged) {
                 // @ts-ignore
-                Users.getUserByEmail(firebaseAuth.currentUser.email).then(res => {
-                    props.setUserLogged(res)
-                }).catch(e => {
-                    alert(e)
-                })
+                Promise.all([Users.getUserByEmail(firebaseAuth.currentUser.email), ProjetoDAO.getProjects()])
+                    .then(results => {
+                        props.setUserLogged(results[0])
+                        props.setProjetos(results[1])
+                    })
             }
             else {
-                setTimeout(() => {
-                    story.push('/home')
-                }, 400)
+                ProjetoDAO.getProjects().then(res => {
+                    props.setProjetos(res)
+                    setTimeout(() => {
+                        story.push('/home')
+                    }, 400)
+                })
             }
         } else {
             setTimeout(() => {
@@ -52,6 +56,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
     setUserLogged: userLogged => dispatch({type: Actions.setUserLogged, payload: userLogged}),
+    setProjetos: projetos => dispatch({type: Actions.setProjetos, payload: projetos})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loading)

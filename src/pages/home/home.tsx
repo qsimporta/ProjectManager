@@ -36,14 +36,19 @@ const FeedPage = props => {
             <Title>Últimos Projetos</Title>
             <div className={'projects_container'}>
                 {
-                    projetos.map((projeto, index) => (
-                        <div
-                            onClick={() => story.push('/home/projeto')}
-                            className={'project'} style={{backgroundColor: colors[index % colors.length]}}>
-                            <h2>{projeto.nome}</h2>
-                            <h3>{projeto.stage}</h3>
-                        </div>
-                    ))
+                    (props.projetos.length > 0) ?
+                        props.projetos.map((projeto, index) => (
+                            <div
+                                onClick={() => {
+                                    props.selectProjeto(projeto)
+                                    story.push('/home/projeto')
+                                }}
+                                className={'project'} style={{backgroundColor: colors[index % colors.length]}}>
+                                <h2>{projeto.nome}</h2>
+                                <h3>Planejamento</h3>
+                            </div>
+                        ))
+                        : (<p style={{color: '#A0A0A0', margin: 0}}>Sem projetos no sistema até o momento</p>)
                 }
             </div>
             <Title>Feed</Title>
@@ -104,7 +109,7 @@ const Home = props => {
                 </ModalFather>
             </div>
             <Router>
-                <Route path={'/home'} component={FeedPage} exact />
+                <Route path={'/home'} component={() => FeedPage(props)} exact />
                 <Route path={'/home/projetos'} component={Projetos} />
                 <Route path={'/home/users'} component={Users} />
                 <Route path={'/home/projeto'} component={PlanejamentoProject} />
@@ -114,9 +119,12 @@ const Home = props => {
 }
 
 const mapStateToProps = state => ({
+    projetos: state.projetos.projetos,
     exitClicked: state.general.exitClicked,
 })
 const mapDispatchToProps = dispatch => ({
+    selectProjeto: projeto =>
+        dispatch({type: Actions.selectProjeto, payload: projeto}),
     clickExit: exit => dispatch({type: Actions.clickExit, payload: exit})
 })
 

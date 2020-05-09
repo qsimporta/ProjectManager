@@ -19,12 +19,13 @@ const PlanejamentoProject = props => {
         <div className={'planejamento'}>
             <div className={'content'}>
                 <header>
-                    <Title>BarberProject</Title>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Morbi ac facilisis ante. Nullam sed convallis sapien. Suspendisse scelerisque bibendum blandit.
-                        Mauris dui sem, varius quis efficitur non, tempor ac lacus.
-                        Proin viverra mollis massa, sed ornare felis accumsan commodo.</p>
-                    <button>Ver no GitHub <img src={require('../../../assets/github-logo.svg')} alt/></button>
+                    <Title>{props.projetoSelected.nome}</Title>
+                    <p>{props.projetoSelected.descricao}</p>
+                    <button onClick={() => {
+                        window.open('http://github.com/qsimporta/'+props.projetoSelected.nome)
+                    }}>
+                        Ver no GitHub <img src={require('../../../assets/github-logo.svg')} alt/>
+                    </button>
                 </header>
                 {
                     planejamentoDone ? (
@@ -41,7 +42,9 @@ const PlanejamentoProject = props => {
     )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    projetoSelected: state.projetos.projetoSelected,
+})
 const mapDispatchToProps = dispatch => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlanejamentoProject)

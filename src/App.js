@@ -8,6 +8,7 @@ import Home from "./pages/home/home"
 import Projetos from "./pages/projetos/projetos"
 
 function App() {
+
     return (
         <Provider store={Store}>
             <Router>
