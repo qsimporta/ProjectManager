@@ -8,6 +8,9 @@ export interface Projeto {
     descricao: String,
     tarefas: Array<Object>,
     estaPlanejando: Boolean,
+    planejamento?: {
+        requisitos?: Array<string>,
+    }
 }
 
 const ProjetoDAO = {
@@ -20,6 +23,14 @@ const ProjetoDAO = {
                     username: process.env.REACT_APP_GITHUB_AUTH_USER,
                     // @ts-ignore
                     password: process.env.REACT_APP_GITHUB_AUTH_TOKEN
+                }
+            })
+        await axios.put('https://api.github.com/repos/qsimporta/'+projeto.nome+'/collaborators/BrianIto', {}, {
+                auth: {
+                    // @ts-ignore
+                    username: process.env.REACT_APP_GITHUB_AUTH_USER,
+                        // @ts-ignore
+                        password: process.env.REACT_APP_GITHUB_AUTH_TOKEN
                 }
             })
         return await firebaseDatabase.collection(COLLECTION).add(projeto)
